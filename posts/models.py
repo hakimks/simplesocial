@@ -23,7 +23,7 @@ class Post(models.Model):
     def __str__(self):
         return self.message
 
-    def save(self, *args, *kwargs):
+    def save(self, *args, **kwargs):
         self.message_html = misaka.html(self.message)
         super(Post, self).save(*args, **kwargs)
 
