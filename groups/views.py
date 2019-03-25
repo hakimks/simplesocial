@@ -57,6 +57,6 @@ class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
             membership.delete()
             messages.success(self.request, 'You have left the group!')
 
-        return super().get(request, *args, **kwargs)
+        return super(LeaveGroup, self).get(request, *args, **kwargs)
 
 
