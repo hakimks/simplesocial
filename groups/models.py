@@ -13,7 +13,7 @@ register = template.Library()
 from django.core.urlresolvers import reverse
 # Create your models here.
 
-class Group(models.model):
+class Group(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(allow_unicode=True, unique=True)
     description = models.TextField(blank=True, default=' ')
@@ -26,7 +26,7 @@ class Group(models.model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         self.description = misaka.html(self.description)
-        super(Group,self).save(*args, *kwargs)
+        super(Group,self).save(*args, **kwargs)
         # super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -37,7 +37,7 @@ class Group(models.model):
 
 
 
-class GroupMember(models.model):
+class GroupMember(models.Model):
     group = models.ForeignKey(Group, related_name='memberships')
     user = models.ForeignKey(User, related_name='user_group')
 
