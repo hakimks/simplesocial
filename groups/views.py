@@ -8,6 +8,7 @@ from groups.models import Group, GroupMember
 
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.db import IntegrityError
 
 from . import models
 
@@ -30,13 +31,13 @@ class JoinGroup(LoginRequiredMixin, generic.RedirectView):
         group = get_object_or_404(Group, slug=self.kwargs.get('slug'))
 
         try:
-            GroupMember.objects.create(user.request.user, group=group)
+            GroupMember.objects.create(user=self.request.user, group=group)
         except IntegrityError:
             messages.warning(self.request, 'Warning, already a member!')
         else:
             messages.success(self.request, 'You are now a member')
         
-        return super().get(request, *args, **kwargs)
+        return super(JoinGroup, self).get(request, *args, **kwargs)
 
 
 class LeaveGroup(LoginRequiredMixin, generic.RedirectView):
