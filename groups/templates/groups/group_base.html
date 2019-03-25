@@ -2,15 +2,15 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            {% pregroup %}
+            {% block pregroup %}
 
             {% endblock %}
 
-            {% group_content %}
+            {% block group_content %}
 
             {% endblock %}
 
-            {% postgroup %}
+            {% block postgroup %}
 
             {% endblock %}
         </div>
