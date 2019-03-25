@@ -13,13 +13,13 @@ from . import models
 
 class CreateGroup(LoginRequiredMixin, generic.CreateView):
     fields = ('name', 'description')
-    models = Group
+    model = models.Group
 
 class SingleGroup(generic.DetailView):
-    model = Group
+    model = models.Group
 
 class ListGroups(generic.ListView):
-    model = Group
+    model = models.Group
 
 class JoinGroup(LoginRequiredMixin, generic.RedirectView):
 
