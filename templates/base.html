@@ -29,7 +29,7 @@
             <a class="navbar-brand mynav" href="{% url 'home' %}">Star Social</a>
             <ul class="nav navbar-nav navbar-right">
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'posts:all' %}">Post</a></li>
+                    <li><a href="{% url 'posts:create' %}">Post</a></li>
                     <li><a href="{% url 'groups:all' %}">Groups</a></li>
                     <li><a href="{% url 'groups:create' %}">Create Group</a></li>
                     <li><a href="{% url 'accounts:logout' %}">Log Out</a></li>
